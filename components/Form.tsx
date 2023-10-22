@@ -1,6 +1,20 @@
 'use client'
 
 import React, { useState } from 'react';
+import { createClient } from '@supabase/supabase-js'
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "" 
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_KEY || ""
+const supabase = createClient(supabaseUrl, supabaseKey)
+
+async function record(name:string, phoneNumber:string, note:string) {
+    const { data, error } = await supabase
+      .from('notes')
+      .insert([
+        { name, phone_number: phoneNumber, note },
+      ])
+      .select()
+}
 
 const Form = () => {
   const [name, setName] = useState<string>('');
@@ -11,6 +25,7 @@ const Form = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log({ name, phoneNumber, note });
+    record(name, phoneNumber, note);
 
     // clear form after submit
     setName('');
