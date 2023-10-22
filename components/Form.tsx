@@ -5,15 +5,17 @@ import React, { useState } from 'react';
 const Form = () => {
   const [name, setName] = useState<string>('');
   const [phoneNumber, setPhoneNumber] = useState<string>('');
+  const [note, setNote] = useState<string>('');
   const [submitted, setSubmitted] = useState<boolean>(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log({ name, phoneNumber });
+    console.log({ name, phoneNumber, note });
 
     // clear form after submit
     setName('');
-    setPhoneNumber('');
+    setPhoneNumber(''); 
+    setNote('');
     setSubmitted(true);
   };
 
@@ -32,13 +34,25 @@ const Form = () => {
           />
         </div>
         <div>
-          <label htmlFor="phoneNumber">Phone Number (optional):</label>
+          <label htmlFor="phoneNumber">Phone Number:</label>
           <input
             type="text"
             id="phoneNumber"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
             style={{ width: '100%', padding: '0.5rem' }}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="note">Note:</label>
+          <input
+            type="text"
+            id="note"
+            value={note}
+            onChange={(e) => setNote(e.target.value)}
+            style={{ width: '100%', padding: '0.5rem' }}
+            required
           />
         </div>
         <button 
