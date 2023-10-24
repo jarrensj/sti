@@ -1,22 +1,25 @@
-
 import { useState, useEffect } from "react";
+
+import Results from "./results";
+
+// form styles
+import formStyles from "../components/Form.module.css";
 
 type ChildProps = {
   updateVerifiedUser: (user: string) => void;
 };
 
-const OTPGenerator : React.FC<ChildProps> = ({ updateVerifiedUser }) => {
+const OTPGenerator: React.FC<ChildProps> = ({ updateVerifiedUser }) => {
   const [phone, setPhone] = useState<string>("");
   const [otp, setOTP] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
   const [otpSent, setOtpSent] = useState<boolean>(false);
-  const [verifiedUser, setVerifiedUser] = useState<string>("")
+  const [verifiedUser, setVerifiedUser] = useState<string>("");
 
   useEffect(() => {
-    updateVerifiedUser(verifiedUser)
+    updateVerifiedUser(verifiedUser);
   }, [updateVerifiedUser, verifiedUser]);
-
 
   const handleSendOTP = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -60,8 +63,8 @@ const OTPGenerator : React.FC<ChildProps> = ({ updateVerifiedUser }) => {
       if (response.ok) {
         setMessage("OTP verification successful!");
         setOtpSent(false);
-        
-        setVerifiedUser(phone)
+
+        setVerifiedUser(phone);
 
         setPhone("");
         setOTP("");
@@ -80,37 +83,41 @@ const OTPGenerator : React.FC<ChildProps> = ({ updateVerifiedUser }) => {
   return (
     <div>
       {!otpSent ? (
-        <form onSubmit={handleSendOTP}>
-          <label>
-            Phone Number:
-            <input
-              type="tel"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              required
-            />
-          </label>
-          <button type="submit" disabled={isLoading}>
-            {isLoading ? "Sending..." : "Send OTP"}
-          </button>
-        </form>
+        <div className={formStyles.FormContainer}>
+          <form onSubmit={handleSendOTP}>
+            <label>
+              Phone Number:
+              <input
+                type="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                required
+              />
+            </label>
+            <button type="submit" disabled={isLoading}>
+              {isLoading ? "Sending..." : "Send OTP"}
+            </button>
+          </form>
+        </div>
       ) : (
-        <form onSubmit={handleVerifyOTP}>
-          <label>
-            Enter OTP:
-            <input
-              type="text"
-              value={otp}
-              onChange={(e) => setOTP(e.target.value)}
-              required
-            />
-          </label>
-          <button type="submit" disabled={isLoading}>
-            {isLoading ? "Verifying..." : "Verify OTP"}
-          </button>
-        </form>
+        <div className={formStyles.FormContainer}>
+          <form onSubmit={handleVerifyOTP}>
+            <label>
+              Enter OTP:
+              <input
+                type="text"
+                value={otp}
+                onChange={(e) => setOTP(e.target.value)}
+                required
+              />
+            </label>
+            <button type="submit" disabled={isLoading}>
+              {isLoading ? "Verifying..." : "Verify OTP"}
+            </button>
+          </form>
+        </div>
       )}
-      {message && <p>{message}</p>}
+      {message && <Results message={message} />}
     </div>
   );
 };
