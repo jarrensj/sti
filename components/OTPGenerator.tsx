@@ -1,12 +1,22 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const OTPGenerator = () => {
+type ChildProps = {
+  updateVerifiedUser: (user: string) => void;
+};
+
+const OTPGenerator : React.FC<ChildProps> = ({ updateVerifiedUser }) => {
   const [phone, setPhone] = useState("");
   const [otp, setOTP] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [otpSent, setOtpSent] = useState(false);
+  const [verifiedUser, setVerifiedUser] = useState<string>("")
+
+  useEffect(() => {
+    updateVerifiedUser(verifiedUser)
+  }, [updateVerifiedUser, verifiedUser]);
+
 
   const handleSendOTP = async (event) => {
     event.preventDefault();
@@ -50,6 +60,9 @@ const OTPGenerator = () => {
       if (response.ok) {
         setMessage("OTP verification successful!");
         setOtpSent(false);
+        
+        setVerifiedUser(phone)
+
         setPhone("");
         setOTP("");
       } else {
