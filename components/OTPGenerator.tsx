@@ -1,5 +1,7 @@
 
 import { useState, useEffect } from "react";
+import { Roboto } from 'next/font/google';
+const roboto = Roboto({ weight: "400", subsets: ['latin'] })
 
 type ChildProps = {
   updateVerifiedUser: (user: string) => void;
@@ -78,7 +80,7 @@ const OTPGenerator : React.FC<ChildProps> = ({ updateVerifiedUser }) => {
   };
 
   return (
-    <div>
+    <div className={roboto.className}>
       {!otpSent ? (
         <form onSubmit={handleSendOTP}>
           <label>

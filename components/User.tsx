@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js'
+import { Roboto } from 'next/font/google';
+const roboto = Roboto({ weight: "400", subsets: ['latin'] })
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "" 
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_KEY || ""
@@ -33,7 +35,7 @@ const User = ({ user }: UserProps ) => {
   }, [user]);
 
   return (
-    <div>
+    <div className={roboto.className}>
       <h1>Hi {user}</h1>
       <h2>Notes:</h2>
       <ul>
