@@ -5,7 +5,7 @@ import User from '../components/User'
 export default function Check() {
   const [verifiedUser, setVerifiedUser] = useState<string>('');
 
-  const updateVerifiedUser = (user) => {
+  const updateVerifiedUser = (user:string) => {
     setVerifiedUser(user);
   };
 

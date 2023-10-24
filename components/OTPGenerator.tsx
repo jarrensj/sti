@@ -6,11 +6,11 @@ type ChildProps = {
 };
 
 const OTPGenerator : React.FC<ChildProps> = ({ updateVerifiedUser }) => {
-  const [phone, setPhone] = useState("");
-  const [otp, setOTP] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState("");
-  const [otpSent, setOtpSent] = useState(false);
+  const [phone, setPhone] = useState<string>("");
+  const [otp, setOTP] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>("");
+  const [otpSent, setOtpSent] = useState<boolean>(false);
   const [verifiedUser, setVerifiedUser] = useState<string>("")
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const OTPGenerator : React.FC<ChildProps> = ({ updateVerifiedUser }) => {
   }, [updateVerifiedUser, verifiedUser]);
 
 
-  const handleSendOTP = async (event) => {
+  const handleSendOTP = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsLoading(true);
     setMessage(""); // reset message
@@ -45,7 +45,7 @@ const OTPGenerator : React.FC<ChildProps> = ({ updateVerifiedUser }) => {
     }
   };
 
-  const handleVerifyOTP = async (event) => {
+  const handleVerifyOTP = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsLoading(true);
     setMessage(""); // reset message
@@ -70,7 +70,7 @@ const OTPGenerator : React.FC<ChildProps> = ({ updateVerifiedUser }) => {
         setMessage(data.error);
       }
     } catch (error) {
-      setMessage(error);
+      setMessage("error");
       console.error(error);
     } finally {
       setIsLoading(false);

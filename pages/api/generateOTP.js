@@ -1,4 +1,3 @@
-// pages/api/generateOTP.js
 import crypto from "crypto";
 import twilio from "twilio";
 import bcrypt from "bcryptjs";
