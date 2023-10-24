@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import OTPGenerator from '../components/OTPGenerator'
-import User from '../components/USer'
+import User from '../components/User'
 
 export default function Check() {
   const [verifiedUser, setVerifiedUser] = useState<string>('');
