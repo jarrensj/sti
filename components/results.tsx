@@ -1,5 +1,3 @@
-import styles from "./results.module.css";
-
 export default function Results({ message }) {
   const [verifiedUser, setVerifiedUser] = useState<string>("");
 
@@ -9,7 +7,7 @@ export default function Results({ message }) {
 
   return (
     <main className="flex min-h-screen flex-col items-center p-24">
-      <div className={styles.ResultsContainer}>
+      <div>
         <p>{message}</p>
       </div>
     </main>

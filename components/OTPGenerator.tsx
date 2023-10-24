@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 
 import Results from "./results";
 
-// form styles
-import formStyles from "../components/Form.module.css";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 type ChildProps = {
   updateVerifiedUser: (user: string) => void;
@@ -83,7 +84,7 @@ const OTPGenerator: React.FC<ChildProps> = ({ updateVerifiedUser }) => {
   return (
     <div>
       {!otpSent ? (
-        <div className={formStyles.FormContainer}>
+        <div>
           <form onSubmit={handleSendOTP}>
             <label>
               Phone Number:
@@ -100,20 +101,20 @@ const OTPGenerator: React.FC<ChildProps> = ({ updateVerifiedUser }) => {
           </form>
         </div>
       ) : (
-        <div className={formStyles.FormContainer}>
+        <div>
           <form onSubmit={handleVerifyOTP}>
-            <label>
+            <Label>
               Enter OTP:
-              <input
+              <Input
                 type="text"
                 value={otp}
                 onChange={(e) => setOTP(e.target.value)}
                 required
               />
-            </label>
-            <button type="submit" disabled={isLoading}>
+            </Label>
+            <Button type="submit" disabled={isLoading}>
               {isLoading ? "Verifying..." : "Verify OTP"}
-            </button>
+            </Button>
           </form>
         </div>
       )}

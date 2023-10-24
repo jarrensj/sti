@@ -3,8 +3,9 @@
 import React, { useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 
-// module stylesheet
-import styles from "./Form.module.css";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_KEY || "";
@@ -36,54 +37,45 @@ const Form = () => {
   };
 
   return (
-    <div className={styles.FormContainer}>
-      <form onSubmit={handleSubmit} className={styles.SubmitForm}>
+    <div>
+      <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name">Name:</label>
-          <input
+          <Input
             type="text"
             id="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className={styles.FormTextInput}
             required
           />
         </div>
         <div>
           <label htmlFor="phoneNumber">Phone Number:</label>
-          <input
+          <Input
             type="text"
             id="phoneNumber"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
-            className={styles.FormTextInput}
             required
           />
         </div>
         <div>
           <label htmlFor="note">Note:</label>
-          <input
+          <Input
             type="text"
             id="note"
             value={note}
             onChange={(e) => setNote(e.target.value)}
-            className={styles.FormTextInput}
             required
           />
         </div>
-        <button
+        <Button
           type="submit"
-          style={{
-            backgroundColor: "#4caf50",
-            color: "#fff",
-            padding: "0.5rem 1rem",
-            border: "none",
-            borderRadius: "4px",
-            cursor: "pointer",
-          }}
+          className="w-full bg-[#4285F4] text-white"
+          variant="outline"
         >
           Submit
-        </button>
+        </Button>
       </form>
       {submitted && (
         <p style={{ marginTop: "1rem", color: "#228B22", textAlign: "center" }}>
