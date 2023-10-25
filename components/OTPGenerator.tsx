@@ -1,24 +1,22 @@
-
 import { useState, useEffect } from "react";
-import { Roboto } from 'next/font/google';
-const roboto = Roboto({ weight: "400", subsets: ['latin'] })
+import { Roboto } from "next/font/google";
+const roboto = Roboto({ weight: "400", subsets: ["latin"] });
 
 type ChildProps = {
   updateVerifiedUser: (user: string) => void;
 };
 
-const OTPGenerator : React.FC<ChildProps> = ({ updateVerifiedUser }) => {
+const OTPGenerator: React.FC<ChildProps> = ({ updateVerifiedUser }) => {
   const [phone, setPhone] = useState<string>("");
   const [otp, setOTP] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
   const [otpSent, setOtpSent] = useState<boolean>(false);
-  const [verifiedUser, setVerifiedUser] = useState<string>("")
+  const [verifiedUser, setVerifiedUser] = useState<string>("");
 
   useEffect(() => {
-    updateVerifiedUser(verifiedUser)
+    updateVerifiedUser(verifiedUser);
   }, [updateVerifiedUser, verifiedUser]);
-
 
   const handleSendOTP = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -62,8 +60,8 @@ const OTPGenerator : React.FC<ChildProps> = ({ updateVerifiedUser }) => {
       if (response.ok) {
         setMessage("OTP verification successful!");
         setOtpSent(false);
-        
-        setVerifiedUser(phone)
+
+        setVerifiedUser(phone);
 
         setPhone("");
         setOTP("");
@@ -82,37 +80,49 @@ const OTPGenerator : React.FC<ChildProps> = ({ updateVerifiedUser }) => {
   return (
     <div className={roboto.className}>
       {!otpSent ? (
-        <form onSubmit={handleSendOTP}>
-          <label>
-            Phone Number:
+        <form onSubmit={handleSendOTP} className={roboto.className}>
+          <div className="flex flex-col gap-2">
+            <label htmlFor="tel">Phone Number</label>
             <input
+              className="w-100 p-2 mb-1 border-gray-600 bg-blue-100 rounded"
               type="tel"
+              id="tel"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               required
             />
-          </label>
-          <button type="submit" disabled={isLoading}>
+          </div>
+          <button
+            type="submit"
+            disabled={isLoading}
+            className="w-full bg-[#4285F4] text-white hover:bg-blue-700 py-4 rounded-md mt-4"
+          >
             {isLoading ? "Sending..." : "Send OTP"}
           </button>
         </form>
       ) : (
-        <form onSubmit={handleVerifyOTP}>
-          <label>
-            Enter OTP:
+        <form onSubmit={handleVerifyOTP} className={roboto.className}>
+          <div className="flex flex-col gap-2">
+            <label htmlFor="otp">Enter OTP:</label>
             <input
+              className="w-100 p-2 mb-1 border-gray-600 bg-blue-100 rounded"
               type="text"
+              id="otp"
               value={otp}
               onChange={(e) => setOTP(e.target.value)}
               required
             />
-          </label>
-          <button type="submit" disabled={isLoading}>
+          </div>
+          <button
+            type="submit"
+            disabled={isLoading}
+            className="w-full bg-[#4285F4] text-white hover:bg-blue-700 py-4 rounded-md mt-4"
+          >
             {isLoading ? "Verifying..." : "Verify OTP"}
           </button>
         </form>
       )}
-      {message && <p>{message}</p>}
+      {message && <p className="text-xl text-center mt-6">{message}</p>}
     </div>
   );
 };
