@@ -1,9 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { Roboto } from "next/font/google";
+const roboto = Roboto({ weight: "400", subsets: ["latin"] });
+
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center p-24 ">
+    <main
+      className={`${roboto.className} flex min-h-screen flex-col items-center p-24`}
+    >
       <div className="container bg-blue-300">
         <h1>Tracker</h1>
         <p className="mb-6">
