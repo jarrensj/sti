@@ -1,27 +1,27 @@
-'use client'
+"use client";
 
-import React, { useState } from 'react';
-import { createClient } from '@supabase/supabase-js'
-import { Roboto } from 'next/font/google';
-const roboto = Roboto({ weight: "400", subsets: ['latin'] })
+import React, { useState } from "react";
+import { createClient } from "@supabase/supabase-js";
+import { Roboto } from "next/font/google";
+const roboto = Roboto({ weight: "400", subsets: ["latin"] });
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "" 
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_KEY || ""
-const supabase = createClient(supabaseUrl, supabaseKey)
+import Link from "next/link";
 
-async function record(name:string, phoneNumber:string, note:string) {
-    const { data, error } = await supabase
-      .from('notes')
-      .insert([
-        { name, phone_number: phoneNumber, note },
-      ])
-      .select()
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_KEY || "";
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+async function record(name: string, phoneNumber: string, note: string) {
+  const { data, error } = await supabase
+    .from("notes")
+    .insert([{ name, phone_number: phoneNumber, note }])
+    .select();
 }
 
 const Form = () => {
-  const [name, setName] = useState<string>('');
-  const [phoneNumber, setPhoneNumber] = useState<string>('');
-  const [note, setNote] = useState<string>('');
+  const [name, setName] = useState<string>("");
+  const [phoneNumber, setPhoneNumber] = useState<string>("");
+  const [note, setNote] = useState<string>("");
   const [submitted, setSubmitted] = useState<boolean>(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -30,70 +30,70 @@ const Form = () => {
     record(name, phoneNumber, note);
 
     // clear form after submit
-    setName('');
-    setPhoneNumber(''); 
-    setNote('');
+    setName("");
+    setPhoneNumber("");
+    setNote("");
     setSubmitted(true);
   };
 
   return (
     <div>
       <form onSubmit={handleSubmit} className={roboto.className}>
-        <div>
+        <div className="flex flex-col gap-2">
           <label htmlFor="name">Name:</label>
           <input
+            className="mb-4 border-gray-600 bg-blue-100"
             type="text"
             id="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            style={{ width: '100%', padding: '0.5rem' }}
+            style={{ width: "100%", padding: "0.5rem" }}
             required
           />
         </div>
-        <div>
+        <div className="flex flex-col gap-2">
           <label htmlFor="phoneNumber">Phone Number:</label>
           <input
+            className="mb-4 border-gray-600 bg-blue-100"
             type="text"
             id="phoneNumber"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
-            style={{ width: '100%', padding: '0.5rem' }}
+            style={{ width: "100%", padding: "0.5rem" }}
             required
           />
         </div>
-        <div>
+        <div className="flex flex-col gap-2">
           <label htmlFor="note">Note:</label>
           <input
+            className="mb-4 border-gray-600 bg-blue-100"
             type="text"
             id="note"
             value={note}
             onChange={(e) => setNote(e.target.value)}
-            style={{ width: '100%', padding: '0.5rem' }}
+            style={{ width: "100%", padding: "0.5rem" }}
             required
           />
         </div>
-        <button 
+        <button
           type="submit"
-          style={{
-            backgroundColor: '#4caf50',
-            color: '#fff',
-            padding: '0.5rem 1rem',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-          }}
+          className="w-full bg-[#4285F4] text-white hover:bg-blue-700 py-4 rounded-md mt-4
+          "
         >
           Submit
         </button>
       </form>
       {submitted && (
-        <p style={{ marginTop: '1rem', color: '#228B22', textAlign: 'center' }}>
-          Submitted! Thank you!
-        </p>
+        <>
+          <p className="text-xl text-center text-green-700 mt-6">
+            Thanks you for your submission!
+          </p>
+          <p className="text-l text-center text-green-700">
+            You are making the world a better place!
+          </p>
+        </>
       )}
     </div>
-
-    
   );
 };
 
