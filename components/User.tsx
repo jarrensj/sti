@@ -36,13 +36,20 @@ const User = ({ user }: UserProps ) => {
 
   return (
     <div className={roboto.className}>
-      <h1>Hi {user}</h1>
-      <h2>Notes:</h2>
-      <ul>
-        {notes?.map((note, index) => (
-          <li key={index}>{note.note}</li>
-        ))}
-      </ul>
+      {user ? (<h1>Hi {user}</h1>) : ''}
+      {notes?.length == null ? (
+        <div>
+          <h2>Notes:</h2>
+          <ul>
+            {notes?.map((note, index) => (
+              <li key={index}>{note.note}</li>
+            ))}
+          </ul>
+        </div>
+      ) : (
+        <h2>Please verify your number to view your notes.</h2>
+      )}
+      
     </div>
   );
 };
