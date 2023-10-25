@@ -42,43 +42,39 @@ const Form = () => {
         <div className="flex flex-col gap-2">
           <label htmlFor="name">Name:</label>
           <input
-            className="mb-4 border-gray-600 bg-blue-100"
+            className="w-100 p-2 rounded mb-4 border-gray-600 bg-blue-100"
             type="text"
             id="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            style={{ width: "100%", padding: "0.5rem" }}
             required
           />
         </div>
         <div className="flex flex-col gap-2">
           <label htmlFor="phoneNumber">Phone Number:</label>
           <input
-            className="mb-4 border-gray-600 bg-blue-100"
+            className="w-100 p-2 rounded mb-4 border-gray-600 bg-blue-100"
             type="text"
             id="phoneNumber"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
-            style={{ width: "100%", padding: "0.5rem" }}
             required
           />
         </div>
         <div className="flex flex-col gap-2">
           <label htmlFor="note">Note:</label>
           <input
-            className="mb-4 border-gray-600 bg-blue-100"
+            className="w-100 p-2 rounded mb-4 border-gray-600 bg-blue-100"
             type="text"
             id="note"
             value={note}
             onChange={(e) => setNote(e.target.value)}
-            style={{ width: "100%", padding: "0.5rem" }}
             required
           />
         </div>
         <button
           type="submit"
-          className="w-full bg-[#4285F4] text-white hover:bg-blue-700 py-4 rounded-md mt-4
-          "
+          className="w-full bg-[#4285F4] text-white hover:bg-blue-700 py-4 rounded-md mt-4"
         >
           Submit
         </button>
