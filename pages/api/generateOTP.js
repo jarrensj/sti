@@ -3,9 +3,7 @@ import twilio from "twilio";
 import bcrypt from "bcryptjs";
 import { MongoClient } from "mongodb";
 
-
 export default async function handler(req, res) {
-
   if (req.method !== "POST") {
     return res.status(405).end(); // Method Not Allowed
   }
@@ -23,13 +21,13 @@ export default async function handler(req, res) {
   );
 
   try {
+    console.log(otp);
     // Send the OTP via SMS
     await client.messages.create({
       body: `Your OTP is: ${otp}`,
       from: process.env.NEXT_PUBLIC_TWILIO_PHONE_NUMBER, // your Twilio number
       to: req.body.phone, // your user's phone number
     });
-
 
     // Store the hashed OTP in the database along with the phone number and expiry time
     const mongoClient = new MongoClient(process.env.NEXT_PUBLIC_MONGODB_URI);
@@ -38,7 +36,7 @@ export default async function handler(req, res) {
     await otps.insertOne({
       phone: req.body.phone,
       otp: hashedOtp,
-      expiry: 0
+      expiry: 0,
     });
     await mongoClient.close();
 

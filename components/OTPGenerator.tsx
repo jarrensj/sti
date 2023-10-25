@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 
-import Results from "./results";
-
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -83,54 +81,55 @@ const OTPGenerator: React.FC<ChildProps> = ({ updateVerifiedUser }) => {
 
   return (
     <>
-      {!otpSent ? (
-        <div>
-          <form onSubmit={handleSendOTP}>
-            <div>
-              <Label htmlFor="tel">Phone Number: </Label>
-              <Input
-                className="mb-4 border-gray-600"
-                type="tel"
-                id="tel"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                required
-              />
-              <Button
-                type="submit"
-                disabled={isLoading}
-                className="w-full bg-[#4285F4] text-white hover:bg-blue-700 py-6"
-              >
-                {isLoading ? "Sending..." : "Send OTP"}
-              </Button>
-            </div>
-          </form>
-        </div>
-      ) : (
-        <div>
-          <form onSubmit={handleVerifyOTP}>
-            <div>
-              <Label htmlFor="otp">Enter OTP: </Label>
-              <Input
-                className="mb-4 border-gray-600"
-                type="text"
-                id="otp"
-                value={otp}
-                onChange={(e) => setOTP(e.target.value)}
-                required
-              />
-            </div>
-            <Button
-              type="submit"
-              disabled={isLoading}
-              className="w-full bg-[#4285F4] text-white hover:bg-blue-700 py-6"
-            >
-              {isLoading ? "Verifying..." : "Verify OTP"}
-            </Button>
-          </form>
-        </div>
-      )}
-      {message && <Results message={message} />}
+      {/* {!otpSent ? ( */}
+      <>
+        <form onSubmit={handleSendOTP}>
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="tel">Phone Number: </Label>
+            <Input
+              className="mb-4 border-gray-600 bg-blue-100"
+              type="tel"
+              id="tel"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              autoComplete="false"
+              required
+            />
+          </div>
+          <Button
+            type="submit"
+            disabled={isLoading}
+            className="w-full bg-[#4285F4] text-white hover:bg-blue-700 py-6"
+          >
+            {isLoading ? "Sending..." : "Send OTP"}
+          </Button>
+        </form>
+      </>
+      {/* ) : ( */}
+      <>
+        <form onSubmit={handleVerifyOTP}>
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="otp">Enter OTP: </Label>
+            <Input
+              className="mb-4 border-gray-600 bg-blue-100"
+              type="text"
+              id="otp"
+              value={otp}
+              onChange={(e) => setOTP(e.target.value)}
+              required
+            />
+          </div>
+          <Button
+            type="submit"
+            disabled={isLoading}
+            className="w-full bg-[#4285F4] text-white hover:bg-blue-700 py-6"
+          >
+            {isLoading ? "Verifying..." : "Verify OTP"}
+          </Button>
+        </form>
+      </>
+      {/* )} */}
+      <div className="my-3">{message}</div>
     </>
   );
 };

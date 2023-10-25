@@ -9,7 +9,11 @@ export default function Submit() {
   return (
     <main className="flex min-h-screen flex-col items-center p-24">
       <div className={scp.className}>
-        <div className="container bg-red-100">
+        <div className="container bg-blue-300">
+          <div id="header">
+            <Link href="/">← Back</Link>
+          </div>
+
           <h1>Submit Potential Exposure</h1>
           <p className="mb-6">
             Make the world a better place by submitting a potential exposure you

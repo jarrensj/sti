@@ -7,14 +7,14 @@ export default function Home() {
       <div className="container bg-blue-300">
         <h1>Tracker</h1>
         <p className="mb-6">
-          Welcome! We're helping you reduce the risk of sti transmission, in
-          turn helping you stay healthy and, last but not least, MAKE THE WORLD
-          A BETTER PLACE.
+          Welcome! We&apos;re helping you reduce the risk of sti transmission,
+          in turn helping you stay healthy and, last but not least, MAKE THE
+          WORLD A BETTER PLACE.
         </p>
         <ul className="flex flex-col gap-4">
           <li>
             <Link
-              className="block bg-red-100 text-center max-w-sm rounded-lg shadow-lg bg-white p-12  border border-gray-200 dark:border-gray-700"
+              className="block bg-blue-100 text-center max-w-sm rounded-lg shadow-lg p-12  border border-gray-200 dark:border-gray-700"
               href="/submit"
             >
               Submit An Exposure
@@ -22,7 +22,7 @@ export default function Home() {
           </li>
           <li>
             <Link
-              className="block  bg-red-300 text-center max-w-sm rounded-lg shadow-lg bg-white p-12  border border-gray-200 dark:border-gray-700"
+              className="block  bg-blue-100 text-center max-w-sm rounded-lg shadow-lg p-12  border border-gray-200 dark:border-gray-700"
               href="/check"
             >
               Check Your Exposure

@@ -39,10 +39,10 @@ const Form = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <div className="mb-4">
+        <div className="flex flex-col gap-2">
           <Label htmlFor="name">Name:</Label>
           <Input
-            className="mb-4 border-gray-600"
+            className="mb-4 border-gray-600 bg-blue-100"
             type="text"
             id="name"
             value={name}
@@ -50,10 +50,10 @@ const Form = () => {
             required
           />
         </div>
-        <div className="mb-4">
+        <div className="flex flex-col gap-2">
           <Label htmlFor="phoneNumber">Phone Number:</Label>
           <Input
-            className="mb-4 border-gray-600"
+            className="mb-4 border-gray-600 bg-blue-100"
             type="text"
             id="phoneNumber"
             value={phoneNumber}
@@ -61,10 +61,10 @@ const Form = () => {
             required
           />
         </div>
-        <div className="mb-4">
+        <div className="flex flex-col gap-2">
           <Label htmlFor="note">Note:</Label>
           <Input
-            className="mb-4 border-gray-600"
+            className="mb-4 border-gray-600 bg-blue-100"
             type="text"
             id="note"
             value={note}
