@@ -82,44 +82,56 @@ const OTPGenerator: React.FC<ChildProps> = ({ updateVerifiedUser }) => {
   };
 
   return (
-    <div>
+    <>
       {!otpSent ? (
         <div>
           <form onSubmit={handleSendOTP}>
-            <label>
-              Phone Number:
-              <input
+            <div>
+              <Label htmlFor="tel">Phone Number: </Label>
+              <Input
+                className="mb-4 border-gray-600"
                 type="tel"
+                id="tel"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 required
               />
-            </label>
-            <button type="submit" disabled={isLoading}>
-              {isLoading ? "Sending..." : "Send OTP"}
-            </button>
+              <Button
+                type="submit"
+                disabled={isLoading}
+                className="w-full bg-[#4285F4] text-white hover:bg-blue-700 py-6"
+              >
+                {isLoading ? "Sending..." : "Send OTP"}
+              </Button>
+            </div>
           </form>
         </div>
       ) : (
         <div>
           <form onSubmit={handleVerifyOTP}>
-            <Label>
-              Enter OTP:
+            <div>
+              <Label htmlFor="otp">Enter OTP: </Label>
               <Input
+                className="mb-4 border-gray-600"
                 type="text"
+                id="otp"
                 value={otp}
                 onChange={(e) => setOTP(e.target.value)}
                 required
               />
-            </Label>
-            <Button type="submit" disabled={isLoading}>
+            </div>
+            <Button
+              type="submit"
+              disabled={isLoading}
+              className="w-full bg-[#4285F4] text-white hover:bg-blue-700 py-6"
+            >
               {isLoading ? "Verifying..." : "Verify OTP"}
             </Button>
           </form>
         </div>
       )}
       {message && <Results message={message} />}
-    </div>
+    </>
   );
 };
 

@@ -39,9 +39,10 @@ const Form = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="name">Name:</label>
+        <div className="mb-4">
+          <Label htmlFor="name">Name:</Label>
           <Input
+            className="mb-4 border-gray-600"
             type="text"
             id="name"
             value={name}
@@ -49,9 +50,10 @@ const Form = () => {
             required
           />
         </div>
-        <div>
-          <label htmlFor="phoneNumber">Phone Number:</label>
+        <div className="mb-4">
+          <Label htmlFor="phoneNumber">Phone Number:</Label>
           <Input
+            className="mb-4 border-gray-600"
             type="text"
             id="phoneNumber"
             value={phoneNumber}
@@ -59,9 +61,10 @@ const Form = () => {
             required
           />
         </div>
-        <div>
-          <label htmlFor="note">Note:</label>
+        <div className="mb-4">
+          <Label htmlFor="note">Note:</Label>
           <Input
+            className="mb-4 border-gray-600"
             type="text"
             id="note"
             value={note}
@@ -71,7 +74,7 @@ const Form = () => {
         </div>
         <Button
           type="submit"
-          className="w-full bg-[#4285F4] text-white"
+          className="w-full bg-[#4285F4] text-white hover:bg-blue-700 py-6"
           variant="outline"
         >
           Submit
