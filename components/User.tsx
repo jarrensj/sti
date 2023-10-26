@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js'
+import styles from './notes.module.css'
 import { Roboto } from 'next/font/google';
 const roboto = Roboto({ weight: "400", subsets: ['latin'] })
 
@@ -35,12 +36,12 @@ const User = ({ user }: UserProps ) => {
   }, [user]);
 
   return (
-    <div className={roboto.className}>
+    <div className={`${roboto.className} ${styles.userNotes}`}>
       <h1>Hi {user}</h1>
       <h2>Notes:</h2>
       <ul>
         {notes?.map((note, index) => (
-          <li key={index}>{note.note}</li>
+          <li key={index} className={styles.notes}>{note.note}</li>
         ))}
       </ul>
     </div>

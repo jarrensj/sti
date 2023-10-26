@@ -1,0 +1,12 @@
+.userNotes {
+  margin: 2em;
+}
+
+.notes {
+  border: 1px black solid;
+  padding: 1em;
+  margin: 1.5em;
+  list-style: none;
+  border-radius: 1em;
+  max-width: 500px;
+}
