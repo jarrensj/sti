@@ -24,6 +24,17 @@ async function getNotes(user:string) {
   }
 }
 
+function formatDate(dateString: string) {
+  const date = new Date(dateString);
+  const mm = String(date.getMonth() + 1).padStart(2, '0');
+  const dd = String(date.getDate()).padStart(2, '0');
+  const yyyy = date.getFullYear();
+  const hh = String(date.getHours()).padStart(2, '0');
+  const min = String(date.getMinutes()).padStart(2, '0');
+  const ss = String(date.getSeconds()).padStart(2, '0');
+  return `${mm}/${dd}/${yyyy} ${hh}:${min}:${ss}`;
+}
+
 const User = ({ user }: UserProps ) => {
   const [notes, setNotes] = useState<any[] | null>([]);
 
@@ -41,7 +52,7 @@ const User = ({ user }: UserProps ) => {
       <h2>Notes:</h2>
       <ul>
         {notes?.map((note, index) => (
-          <li key={index} className={styles.notes}>{note.note}</li>
+          <li key={index} className={styles.note}>{note.note} {formatDate(note.created_at)}</li>
         ))}
       </ul>
     </div>
