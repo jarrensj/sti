@@ -50,22 +50,32 @@ const User = ({ user }: UserProps ) => {
 
   return (
     <div className={`${roboto.className} ${styles.userNotes}`}>
-      <h1>Hi {user}</h1>
-      <h2>Notes:</h2>
-      <ul>
-        {notes?.map((note, index) => (
-          <li key={index} className={styles.note}>
-            <div className={styles.card}>
-              <div className={styles.body}>
-              {note.note} 
-              </div>
-              <div className={styles.bottom}>
-                {formatDate(note.created_at)}
-              </div>
-            </div>
-          </li>
-        ))}
-      </ul>
+      {user && 
+        <>
+          <h1>Phone Number: {user}</h1>
+          {notes?.length ? 
+            <>
+              <h2>Notes:</h2>
+              <ul>
+                {notes?.map((note, index) => (
+                  <li key={index} className={styles.note}>
+                    <div className={styles.card}>
+                      <div className={styles.body}>
+                      {note.note} 
+                      </div>
+                      <div className={styles.bottom}>
+                        Message was sent on {formatDate(note.created_at)}
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </> : (
+              <h2>There are no notes.</h2>
+            )
+          }
+        </> 
+      }
     </div>
   );
 };
