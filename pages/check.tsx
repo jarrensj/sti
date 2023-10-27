@@ -13,7 +13,9 @@ export default function Check() {
 
   return (
     <main className={`${roboto.className} flex min-h-screen flex-col items-center p-24`}>
-     check
+     <h1>Check what messages people have sent you!</h1>
+     <p>Type your phone number below and receive an one-time password to your number.</p>
+     <p>Once you receive the one-time password, input it into the box and see any messages received.</p>
      <OTPGenerator updateVerifiedUser={updateVerifiedUser} />
      <User user={verifiedUser} />
     </main>
