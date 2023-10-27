@@ -2,6 +2,12 @@
   margin: 2em;
 }
 
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .note {
   border: 1px black solid;
   padding: 1em;
@@ -9,4 +15,9 @@
   list-style: none;
   border-radius: 1em;
   max-width: 500px;
+}
+
+.bottom {
+  line-height: 1.5em;
+  font-size: 0.75em;
 }
