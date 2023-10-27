@@ -9,28 +9,25 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ""
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_KEY || ""
 const supabase = createClient(supabaseUrl, supabaseKey)
 
-async function record(name:string, phoneNumber:string, note:string) {
+async function record(phoneNumber:string, note:string) {
     const { data, error } = await supabase
       .from('notes')
       .insert([
-        { name, phone_number: phoneNumber, note },
+        {phone_number: phoneNumber, note },
       ])
       .select()
 }
 
 const Form = () => {
-  const [name, setName] = useState<string>('');
   const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [note, setNote] = useState<string>('');
   const [submitted, setSubmitted] = useState<boolean>(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log({ name, phoneNumber, note });
-    record(name, phoneNumber, note);
+    record(phoneNumber, note);
 
     // clear form after submit
-    setName('');
     setPhoneNumber(''); 
     setNote('');
     setSubmitted(true);
@@ -39,17 +36,6 @@ const Form = () => {
   return (
     <div>
       <form onSubmit={handleSubmit} className={roboto.className}>
-        <div>
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            style={{ width: '100%', padding: '0.5rem' }}
-            required
-          />
-        </div>
         <div>
           <label htmlFor="phoneNumber">Phone Number:</label>
           <input
