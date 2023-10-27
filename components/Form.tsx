@@ -2,8 +2,6 @@
 
 import React, { useState } from 'react';
 import { createClient } from '@supabase/supabase-js'
-import { Roboto } from 'next/font/google';
-const roboto = Roboto({ weight: "400", subsets: ['latin'] })
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "" 
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_KEY || ""
@@ -33,28 +31,61 @@ const Form = () => {
     setSubmitted(true);
   };
 
+  const formStyle: React.CSSProperties = {
+    display: 'flex',
+    flexDirection: 'column',
+    maxWidth: '300px',
+    margin: '0 auto',
+  };
+
+  const descriptionStyle = {
+    fontSize: '12px',
+    color: '#696969',
+  };
+
+  const labelStyle = {
+    display: 'block',
+  };
+
+  const inputStyle = {
+    marginBottom: '1rem',
+    padding: '0.5rem',
+    borderRadius: '4px',
+    border: '1px solid #ddd',
+  };
+
+  const textareaStyle = {
+    ...inputStyle,
+    height: '100px',
+    width: '300px' 
+  };
+
   return (
-    <div>
-      <form onSubmit={handleSubmit} className={roboto.className}>
+    <div style={formStyle}>
+      <h1>Form</h1>
+      <p style={descriptionStyle}>
+        Enter their phone number and what message you want to send. <br />
+        They will have to verify with their number to be able to view messages sent to that number.
+      </p>
+      <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="phoneNumber">Phone Number:</label>
+          <label htmlFor="phoneNumber" style={labelStyle}>Their phone number: </label>
           <input
             type="text"
             id="phoneNumber"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
-            style={{ width: '100%', padding: '0.5rem' }}
+            style={inputStyle}
             required
           />
         </div>
         <div>
-          <label htmlFor="note">Note:</label>
-          <input
-            type="text"
+          <label htmlFor="note" style={labelStyle}>Message: </label>
+          <textarea
             id="note"
             value={note}
             onChange={(e) => setNote(e.target.value)}
-            style={{ width: '100%', padding: '0.5rem' }}
+            style={textareaStyle}
             required
           />
         </div>
@@ -67,6 +98,7 @@ const Form = () => {
             border: 'none',
             borderRadius: '4px',
             cursor: 'pointer',
+            width: '100px'
           }}
         >
           Submit
