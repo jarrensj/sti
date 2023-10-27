@@ -24,6 +24,19 @@ async function getNotes(user:string) {
   }
 }
 
+function formatDate(dateString: string) {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-us', {
+    weekday:"long",
+    year:"numeric",
+    month:"short",
+    day:"numeric",
+    hour:"2-digit",
+    minute:"2-digit",
+    second:"2-digit"
+  })
+}
+
 const User = ({ user }: UserProps ) => {
   const [notes, setNotes] = useState<any[] | null>([]);
 
@@ -41,7 +54,16 @@ const User = ({ user }: UserProps ) => {
       <h2>Notes:</h2>
       <ul>
         {notes?.map((note, index) => (
-          <li key={index} className={styles.notes}>{note.note}</li>
+          <li key={index} className={styles.note}>
+            <div className={styles.card}>
+              <div className={styles.body}>
+              {note.note} 
+              </div>
+              <div className={styles.bottom}>
+                {formatDate(note.created_at)}
+              </div>
+            </div>
+          </li>
         ))}
       </ul>
     </div>
