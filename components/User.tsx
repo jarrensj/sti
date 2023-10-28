@@ -10,10 +10,21 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ""
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_KEY || ""
 const supabase = createClient(supabaseUrl, supabaseKey)
 
+function checkIfAnySTINotes( notes:any[]|null ):boolean {
+  if(notes == null) {
+    return false;
+  }
+  for (let i = 0; i < notes.length; ++i) {
+    if (notes[i].note.includes('STI')) {
+        return true;
+    }
+  }
+  return false;
+}
+
 async function getNotes(user:string) {
   try {
     let { data: notes, error } = await supabase.from('notes').select('*').eq('phone_number', user);
-    console.log(notes);
     if (error) {
       throw error;
     }
@@ -39,11 +50,13 @@ function formatDate(dateString: string) {
 
 const User = ({ user }: UserProps ) => {
   const [notes, setNotes] = useState<any[] | null>([]);
+  const [STIMessageFound, setSTIMessageFound] = useState<boolean>(false)
 
   useEffect(() => {
     async function fetchNotes(user:string) {
       const notesData = await getNotes(user);
       setNotes(notesData);
+      setSTIMessageFound((checkIfAnySTINotes(notesData)))
     }
     fetchNotes(user);
   }, [user]);
@@ -70,6 +83,11 @@ const User = ({ user }: UserProps ) => {
                   </li>
                 ))}
               </ul>
+              { STIMessageFound && <>
+                  <h3>Someone left you a message mentioning STIs. We are not doctors and this is not medical advice but if you would like to check out some resources about STIs, here are some: </h3>
+                  <p>Disclaimer: We are not doctors or medical professionals. This is not health advice. This is not medical advice. </p>
+                </>
+              }
             </> : (
               <h2>There are no notes.</h2>
             )
