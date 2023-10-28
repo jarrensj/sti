@@ -6,6 +6,7 @@ import styles from './notes.module.css'
 import { Roboto } from 'next/font/google';
 const roboto = Roboto({ weight: "400", subsets: ['latin'] })
 import STI from './STI'
+import NoteItem from './NoteItem'
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "" 
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_KEY || ""
@@ -72,16 +73,7 @@ const User = ({ user }: UserProps ) => {
               <h2>Notes:</h2>
               <ul>
                 {notes?.map((note, index) => (
-                  <li key={index} className={styles.note}>
-                    <div className={styles.card}>
-                      <div className={styles.body}>
-                        {note.note} 
-                      </div>
-                      <div className={styles.bottom}>
-                        Message was sent on {formatDate(note.created_at)}
-                      </div>
-                    </div>
-                  </li>
+                  <NoteItem key={index} note={note.note} created_at={note.created_at} />
                 ))}
               </ul>
               { STIMessageFound && <>
