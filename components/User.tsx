@@ -5,6 +5,7 @@ import { createClient } from '@supabase/supabase-js'
 import styles from './notes.module.css'
 import { Roboto } from 'next/font/google';
 const roboto = Roboto({ weight: "400", subsets: ['latin'] })
+import STI from './STI'
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "" 
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_KEY || ""
@@ -74,7 +75,7 @@ const User = ({ user }: UserProps ) => {
                   <li key={index} className={styles.note}>
                     <div className={styles.card}>
                       <div className={styles.body}>
-                      {note.note} 
+                        {note.note} 
                       </div>
                       <div className={styles.bottom}>
                         Message was sent on {formatDate(note.created_at)}
@@ -84,8 +85,7 @@ const User = ({ user }: UserProps ) => {
                 ))}
               </ul>
               { STIMessageFound && <>
-                  <h3>Someone left you a message mentioning STIs. We are not doctors and this is not medical advice but if you would like to check out some resources about STIs, here are some: </h3>
-                  <p>Disclaimer: We are not doctors or medical professionals. This is not health advice. This is not medical advice. </p>
+                  <STI />
                 </>
               }
             </> : (
