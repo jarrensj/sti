@@ -33,7 +33,7 @@ const OTPGenerator : React.FC<ChildProps> = ({ updateVerifiedUser }) => {
       });
 
       if (response.ok) {
-        setMessage("OTP has been sent to your phone.");
+        setMessage("An one-time password has been sent to your phone number.");
         setOtpSent(true);
       } else {
         const data = await response.json();
