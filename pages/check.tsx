@@ -15,13 +15,15 @@ export default function Check() {
   };
 
   return (
-    <main className={`${roboto.className} ${styles.check}`}>
+    <main className={roboto.className}>
      <NavBar />
-     <h1>Check what messages people have sent you!</h1>
-     <p>Type your phone number below and receive an one-time password to your number.</p>
-     <p>Once you receive the one-time password, input it into the box and see any messages received.</p>
-     <OTPGenerator updateVerifiedUser={updateVerifiedUser} />
-     <User user={verifiedUser} />
+     <div className={styles.check}>
+      <h1>Check what messages people have sent you!</h1>
+      <p>Type your phone number below and receive an one-time password to your number.</p>
+      <p>Once you receive the one-time password, input it into the box and see any messages received.</p>
+      <OTPGenerator updateVerifiedUser={updateVerifiedUser} />
+      <User user={verifiedUser} />
+     </div>
     </main>
   )
 }
