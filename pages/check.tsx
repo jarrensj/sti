@@ -2,7 +2,9 @@ import { useState } from 'react';
 import OTPGenerator from '../components/OTPGenerator'
 import User from '../components/User'
 import NavBar from '../components/NavBar'
+import styles from './form.module.css'
 import { Roboto } from 'next/font/google';
+
 const roboto = Roboto({ weight: "400", subsets: ['latin'] })
 
 export default function Check() {
@@ -13,7 +15,7 @@ export default function Check() {
   };
 
   return (
-    <main className={`${roboto.className} flex min-h-screen flex-col items-center p-24`}>
+    <main className={`${roboto.className} ${styles.check}`}>
      <NavBar />
      <h1>Check what messages people have sent you!</h1>
      <p>Type your phone number below and receive an one-time password to your number.</p>
