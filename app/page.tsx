@@ -5,7 +5,7 @@ import HeartClick from '../components/HeartClick'
 export default function Home() {
   return (
     <main className={styles.home}>
-      <h1>hi</h1>
+      <h1>CaredFor (the anonymous tip messaging app)</h1>
       <p>This app is so you can tell the people that you care about what you want to tell them anonymously!</p>
       <p>You can send messages like:</p>
       <ul>
