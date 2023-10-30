@@ -16,7 +16,7 @@ function checkIfAnySTINotes( notes:any[]|null ):boolean {
     return false;
   }
   for (let i = 0; i < notes.length; ++i) {
-    if ((/\bSTI\b/.test(notes[i].note))) {
+    if ((/\bSTI\b/i.test(notes[i].note))) {
         return true;
     }
   }
