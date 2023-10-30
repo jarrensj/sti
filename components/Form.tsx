@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { createClient } from '@supabase/supabase-js'
+import styles from '../pages/form.module.css'
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "" 
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_KEY || ""
@@ -39,7 +40,7 @@ const Form = () => {
   };
 
   const descriptionStyle = {
-    fontSize: '12px',
+    fontSize: '1em',
     color: '#696969',
   };
 
@@ -91,15 +92,7 @@ const Form = () => {
         </div>
         <button 
           type="submit"
-          style={{
-            backgroundColor: '#4caf50',
-            color: '#fff',
-            padding: '0.5rem 1rem',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-            width: '100px'
-          }}
+          className={styles.button}
         >
           Submit
         </button>
