@@ -1,5 +1,7 @@
 
 import { useState, useEffect } from "react";
+import styles from './button.module.css'
+import form from './otpForm.module.css'
 import { Roboto } from 'next/font/google';
 const roboto = Roboto({ weight: "400", subsets: ['latin'] })
 
@@ -82,7 +84,7 @@ const OTPGenerator : React.FC<ChildProps> = ({ updateVerifiedUser }) => {
   return (
     <div className={roboto.className}>
       {!otpSent ? (
-        <form onSubmit={handleSendOTP}>
+        <form onSubmit={handleSendOTP} className={form.form}>
           <label>
             Phone Number:
             <input
@@ -92,7 +94,7 @@ const OTPGenerator : React.FC<ChildProps> = ({ updateVerifiedUser }) => {
               required
             />
           </label>
-          <button type="submit" disabled={isLoading}>
+          <button type="submit" disabled={isLoading} className={styles.button}>
             {isLoading ? "Sending..." : "Send OTP"}
           </button>
         </form>

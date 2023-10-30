@@ -1,0 +1,24 @@
+.nav {
+  margin: auto;
+  padding: 2em;
+  width: 90vw;
+}
+
+.navlinks {
+  justify-content: space-between;
+  display: flex;  
+}
+
+.navbrand {
+  font-size: 2em;
+  letter-spacing: 0.1em;
+  font-weight: bold;
+}
+
+a.navbrand, .link {
+  text-decoration: none;
+}
+
+a.navbrand:visited, .link:visited {
+  color: #000000;
+}
