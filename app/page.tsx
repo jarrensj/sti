@@ -1,9 +1,9 @@
-import Image from 'next/image'
 import Link from 'next/link'
+import styles from './home.module.css'
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center p-24">
+    <main className={styles.home}>
       <h1>hi</h1>
       <p>This app is so you can tell the people that you care about what you want to tell them anonymously!</p>
       <p>You can send messages like:</p>
@@ -15,10 +15,10 @@ export default function Home() {
           “I think you should check that out with a doctor just in case”
         </li>
       </ul>
-      <Link href="/submit"><button>go to submit page</button></Link>
+      <Link href="/submit"><button className={styles.button}>go to submit page</button></Link>
       <p>You are cared for and loved by people.</p>
       <p>You can check what messages you have received by typing your number and verifying you have that number by receiving a one-time password on your phone.</p>
-      <Link href="/check"><button>Check what messages your number has received</button></Link>
+      <Link href="/check"><button className={styles.button}>Check what messages your number has received</button></Link>
     </main>
   )
 }
